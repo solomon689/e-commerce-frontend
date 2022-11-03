@@ -4,12 +4,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CoreModule } from '../core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    ProductCardComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   exports: [
     NavbarComponent,
+    ProductCardComponent,
   ],
   providers: [CookieService]
 })

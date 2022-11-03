@@ -1,0 +1,10 @@
+<div class="card">
+    <img [src]="product?.urlImage" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ product?.title }}</h5>
+      <h6 class="card-subtitle text-muted">{{ product?.skuCode }}</h6>
+      <p class="card-text">{{ product?.description }}</p>
+      <p>{{ product?.price | currency: 'CLP $' }}</p>
+      <button class="btn btn-primary">Agregar al carro</button>
+    </div>
+</div>

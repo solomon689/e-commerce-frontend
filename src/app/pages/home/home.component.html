@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row row-cols-lg-3 g-4 p-3" *ngIf="products">
+        <div class="col" *ngFor="let product of products">
+            <app-product-card [product]="product"></app-product-card>
+        </div>
+    </div>
+    <ngb-pagination 
+        class="d-flex justify-content-end"
+        [collectionSize]="totalProducts" [(page)]="page"
+        (pageChange)="loadPage($event)"
+    ></ngb-pagination>
+    <pre>{{page}}</pre>
+</div>
