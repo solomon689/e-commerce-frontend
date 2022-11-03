@@ -1,8 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/auth/auth.service';
 import Swal from 'sweetalert2';
+import { CategoryService } from '../../../core/services/category/category.service';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +13,18 @@ import Swal from 'sweetalert2';
 })
 export class NavbarComponent implements OnInit {
   public authForm!: FormGroup;
-
+  public categories: Category[] = [];
+  
   constructor(
-    public config: NgbModalConfig, 
     private modalService: NgbModal,
     private authService: AuthService,
+    private categoryService: CategoryService,
     private readonly fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.getCategories();
   }
 
   public open(content: any): void {
@@ -57,6 +61,24 @@ export class NavbarComponent implements OnInit {
     this.authForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
+    });
+  }
+
+  private getCategories(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (response) => {
+        if (response.data) {
+          for (let i = 0 ; i < response.data.length ; i++) {
+            const category: Category = new Category(
+              response.data[i].name,
+              response.data[i].subCategories,
+              response.data[i].id,
+            );
+
+            this.categories.push(category);
+          }
+        }
+      },
     });
   }
 }
