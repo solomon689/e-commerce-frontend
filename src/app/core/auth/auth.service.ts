@@ -22,7 +22,7 @@ export class AuthService {
       password: data.password,
     });
 
-    return this.http.get<CustomResponse<any>>(`${ environment.apiUrl }auth/login`, { headers, withCredentials: true })
+    return this.http.get<CustomResponse<any>>(`${ environment.apiUrl }/auth/login`, { headers, withCredentials: true })
       .pipe(catchError(this.handleError));
   }
 
