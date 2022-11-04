@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public products: Product[] = new Array<Product>();
   public page: number = 1;
   public totalProducts: number = 0;
+  public error: boolean = false;
   private productSub!: Subscription;
 
   constructor(
@@ -21,7 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    setTimeout(() => {
+      this.getProducts();
+    }, 2000);
   }
 
   ngOnDestroy(): void {
@@ -48,6 +51,9 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         }
       },
+      error: (error) => {
+        this.error = true;
+      }
     });
   }
 

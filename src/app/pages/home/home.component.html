@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" *ngIf="products.length > 0; else loading">
     <div class="row p-3">
         <div class="col-12 text-end">
             <app-order-filter-dropdown
@@ -7,7 +7,7 @@
             ></app-order-filter-dropdown>
         </div>
     </div>
-    <div class="row row-cols-lg-3 g-4 p-3" *ngIf="products">
+    <div class="row row-cols-lg-3 g-4 p-3">
         <div class="col" *ngFor="let product of products">
             <app-product-card [product]="product"></app-product-card>
         </div>
@@ -18,3 +18,14 @@
         (pageChange)="loadPage($event)"
     ></ngb-pagination>
 </div>
+<ng-template #loading>
+    <div class="container p-4">
+        <div class="spinner-border d-flex m-auto" role="status" *ngIf="!error">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="error">
+            Ha ocurrido un error durante la carga :(
+        </div>
+    </div>
+</ng-template>
+
