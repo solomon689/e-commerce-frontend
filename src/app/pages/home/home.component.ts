@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { ProductsService } from '../../core/services/products/products.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private getProducts(): void {
-    this.productSub = this.productService.getProducts(this.page).subscribe({
+    this.productSub = this.productService.getProductsByPage(this.page).subscribe({
       next: (response) => {
         if (response.data) {
           this.totalProducts = response.totalProducts || 0;

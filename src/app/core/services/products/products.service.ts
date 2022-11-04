@@ -12,7 +12,7 @@ export class ProductsService {
 
   constructor(private readonly http: HttpClient,) { }
 
-  public getProducts(page: number = 1): Observable<CustomResponse<Product[]>> {
+  public getProductsByPage(page: number = 1): Observable<CustomResponse<Product[]>> {
     return this.http.get<CustomResponse<Product[]>>(`${ environment.apiUrl }/product/?page=${ page }`, {
       withCredentials: true,
     })

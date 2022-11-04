@@ -1,5 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container">
+    <div class="row p-3">
+        <div class="col-12 text-end">
+            <app-order-filter-dropdown
+                [name]="'Ordenar por'"
+            ></app-order-filter-dropdown>
+        </div>
+    </div>
     <div class="row row-cols-lg-3 g-4 p-3" *ngIf="products">
         <div class="col" *ngFor="let product of products">
             <app-product-card [product]="product"></app-product-card>
@@ -10,5 +17,4 @@
         [collectionSize]="totalProducts" [(page)]="page"
         (pageChange)="loadPage($event)"
     ></ngb-pagination>
-    <pre>{{page}}</pre>
 </div>
