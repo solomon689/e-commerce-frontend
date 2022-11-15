@@ -18,4 +18,10 @@ export class ProductsService {
     })
       .pipe(retry(1));
   }
+
+  public getProductById(productId: string): Observable<CustomResponse<Product>> {
+    return this.http.get<CustomResponse<Product>>(`${ environment.apiUrl }/product/${ productId }`, 
+      { withCredentials: true, }
+    ).pipe(retry(1));
+  }
 }

@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { OrderFilterDropdownComponent } from './components/order-filter-dropdown/order-filter-dropdown.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    RouterModule,
   ],
   exports: [
     NavbarComponent,
