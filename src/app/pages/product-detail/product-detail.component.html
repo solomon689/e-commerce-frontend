@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<div class="container border shadow-sm p-3 mt-4" *ngIf="product; else loading">
+    <app-product-description class="row" [product]="product"></app-product-description>
+</div>
+
+<div class="container border shadow-sm p-3 mt-4" *ngIf="product">
+    <h2 class="mb-5">Caracteristicas del producto</h2>
+    <app-product-aspects class="row" [product]="product"></app-product-aspects>
+</div>
+
+<div class="container border shadow-sm p-3 mt-4 mb-4" *ngIf="product">
+    <h2 class="mb-4">Productos recomendados</h2>
+    <app-recommended-product-by-category [categories]="product.categories"></app-recommended-product-by-category>
+</div>
+
+<ng-template #loading>
+    <div class="container p-4">
+        <div class="spinner-border d-flex m-auto" role="status" *ngIf="!error">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="error">
+            Ha ocurrido un error durante la carga :(
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<ngb-carousel
+    #carousel
+    [showNavigationArrows]="true"
+    [showNavigationIndicators]="false"
+>
+    <ng-template ngbSlide *ngFor="let products of productsMatrix">
+        <div class="card-group g-4 justify-content-center">
+            <app-product-card *ngFor="let product of products" [product]="product" class="me-3"></app-product-card>
+        </div>
+    </ng-template>
+
+</ngb-carousel>
