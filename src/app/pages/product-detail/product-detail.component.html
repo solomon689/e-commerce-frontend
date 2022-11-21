@@ -9,9 +9,9 @@
     <app-product-aspects class="row" [product]="product"></app-product-aspects>
 </div>
 
-<div class="container border shadow-sm p-3 mt-4 mb-4">
+<div class="container border shadow-sm p-3 mt-4 mb-4" *ngIf="product">
     <h2 class="mb-4">Productos recomendados</h2>
-    <app-recommended-product-by-category></app-recommended-product-by-category>
+    <app-recommended-product-by-category [categories]="product.categories"></app-recommended-product-by-category>
 </div>
 
 <ng-template #loading>

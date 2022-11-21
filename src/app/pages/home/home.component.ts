@@ -11,9 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public products: Product[] = new Array<Product>();
-  public page: number = 1;
   public totalProducts: number = 0;
   public error: boolean = false;
+  public page: number = 1;
+  private limit: number = 9;
+  private offset: number = 0;
   private productSub!: Subscription;
 
   constructor(
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.getProducts();
+      this.getProducts(this.limit, this.offset);
     }, 2000);
   }
 
@@ -33,13 +35,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public loadPage(page: number): void {
     this.page = page;
+    this.offset += this.products.length; 
     this.products = [];
     this.router.navigate(['inicio'], { queryParams: { page } })
-    this.getProducts();
+    this.getProducts(this.limit, this.offset);
   }
 
-  private getProducts(): void {
-    this.productSub = this.productService.getProductsByPage(this.page).subscribe({
+  private getProducts(limit: number, offset: number): void {
+    this.productSub = this.productService.getProductsByPage(this.limit, this.offset).subscribe({
       next: (response) => {
         if (response.data) {
           this.totalProducts = response.totalProducts || 0;
